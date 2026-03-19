@@ -23,6 +23,7 @@ jobs:
         uses: docker/build-push-action@v7
         with:
           context: ./bulletin-board-db
+          file: ./bulletin-board-db/Dockerfile
           push: true
           tags: 0xray1e/bulletin-board-db:v3
       -
@@ -30,6 +31,7 @@ jobs:
         uses: docker/build-push-action@v7
         with:
           context: ./bulletin-board-app
+          file: ./bulletin-board-app/Dockerfile
           push: true
           tags: 0xray1e/bulletin-board-db:v3
         
