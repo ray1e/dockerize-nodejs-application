@@ -1,0 +1,24 @@
+name: Docker Image
+
+on:
+  push:
+    branches: [ "v3" ]
+  pull_request:
+    branches: [ "v3" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: docker build -t bb .
+    - name: Tag the Docker Image
+      run: docker tag bb 0xray1e/my-app
+    - name: Docker Login
+      run: docker login -u ${{secrets.DOCKER_USERNAME}} -P ${{secrets.DOCKER_PASSWORD}} 
+    - name: docker push
+     run: docker push 0xray1e/my-app
