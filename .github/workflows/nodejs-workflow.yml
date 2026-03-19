@@ -19,10 +19,17 @@ jobs:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: Build and push
+        name: Build and push DB
         uses: docker/build-push-action@v7
         with:
-          context: .
+          context: ./bulletin-board-db
           push: true
           tags: 0xray1e/bulletin-board-db:v3
-          
+      -
+        name: Build and Push app
+        uses: docker/build-push-action@v7
+        with:
+          context: ./bulletin-board-app
+          push: true
+          tags: 0xray1e/bulletin-board-db:v3
+        
