@@ -1,13 +1,14 @@
-FROM node:6.11.5
+FROM node:16-alpine
+RUN apk add --no-cache curl
 
 WORKDIR /usr/src/app
 COPY package.json .
 RUN npm install
 
 EXPOSE 8080
-CMD [ "npm", "start" ]
+CMD [ "node", "server.js" ]
 
 COPY . .
 
-HEALTHCHECK --interval=5s \
+HEALTHCHECK --interval=90s \
   CMD curl --fail http://localhost:8080 || exit 1  
