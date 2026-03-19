@@ -22,6 +22,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v7
         with:
+          context: .
           push: true
           tags: 0xray1e/bulletin-board-db:v3
           
